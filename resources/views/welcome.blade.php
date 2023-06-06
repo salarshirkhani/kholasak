@@ -14,9 +14,10 @@
                                       <div class="item-main animation" >
                                           <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->title}}"></div>
                                           <div><h3>  
-                                            {{$item->title}}    
+                                            {!! \Illuminate\Support\Str::limit($item->title, 10, ' ...') !!}   
+  
                                           </h3></div>
-                                          <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 325, ' ...') !!}</span></div>
+                                          <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 25, ' ...') !!}</span></div>
                                       </div>
                                   </a>
                               </div>
@@ -31,9 +32,10 @@
                                     <div class="item-main animation" >
                                         <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->title}}"></div>
                                         <div><h3>  
-                                          {{$item->title}}    
+                                            {!! \Illuminate\Support\Str::limit($item->title, 10, ' ...') !!}   
+
                                         </h3></div>
-                                        <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 325, ' ...') !!}</span></div>
+                                        <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 25, ' ...') !!}</span></div>
                                     </div>
                                 </a>
                             </div>
@@ -70,9 +72,9 @@
                                   <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}"
                                           alt="{{$item->title}}"></div>
                                   <div><span> 
-                                    {{$item->title}}    
+                                    {!! \Illuminate\Support\Str::limit($item->title, 10, ' ...') !!}   
                                       </span></div>
-                                  <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 325, ' ...') !!}</span></div>
+                                  <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 25, ' ...') !!}</span></div>
                               </div>
                           </a>
                       </div>
