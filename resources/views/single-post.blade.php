@@ -1,5 +1,7 @@
 @extends('layouts.frontt')
 @section('content')
+<link rel="stylesheet" href="{{asset('style/style-blog/blog.css')}}" media="only screen and (min-width: 901px)">
+<link rel="stylesheet" href="{{asset('style/style-blog/blog-mobile.css')}}" media="only screen and (max-width: 900px)">
 <style>
     .addcomment input{
     background: #f0f0f0 !important;
