@@ -144,7 +144,7 @@ class FrontController extends Controller
 
     public function index() {
 
-        SEOTools::setTitle('رواق');
+        SEOTools::setTitle('خلاصک');
         SEOTools::setDescription('مرجع فروش محصولات فرهنگی');
         SEOTools::opengraph()->setUrl('http://rravagh.com');
         SEOTools::setCanonical('http://rravagh.com');
@@ -157,7 +157,7 @@ class FrontController extends Controller
           $subscribe =NULL ;
 
         return view('welcome',[
-        'products' => Product::orderBy('created_at', 'desc')->get(),
+        'posts' => Post::orderBy('created_at', 'desc')->get(),
         'categories' => Category::whereNull('parent_id')->with('allChildren')->where('show','1')->where('type','product')->orderBy('priority', 'desc')->get(),
         'brands' => brand::orderBy('created_at', 'desc')->get(),     
         'subscribe' =>  $subscribe, 
