@@ -18,119 +18,177 @@
       img{width:100% !important;}
     }
 </style>
-<section class="content2">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-            <div class="blogorg">
-                <p class="authorname">نویسنده: {{$item->writer}}</p>
-                <p class="blogdate" style="color: gray;">{{ Facades\Verta::instance($item->created_at)->format('Y/n/j')}}</p>
-                <h3 style="font-weight: 900; clear:both">{{$item->title}}</h3>
-                <img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->title}}">
-                <div class="blogtext">
-                  @isset($item->iframe)
-                    {!!$item->iframe!!}
-                  @endisset
-                    {!!$item->content!!}
-                </div>
-                <span style="display: inline-flex;color: #fff; cursor:pointer">
-                @foreach($tags as $tag)
-                <form action="{{ route('posttags') }}" id="{{$tag->id}}" >
-                    <input type="hidden" name="q" value="{{$tag->name}}">
-                </form>
-                <p style="background: #d3c468;padding: 5px;margin: 10px;border-radius: 10px;" class="signle-tag" onclick="document.getElementById('{{$tag->id}}').submit();">{{$tag->name}}</p>, 
-                @endforeach
-            </span>
-            </div>
-            <div class="prodtabcontent" style="display: block;">
-              <h3>نظرات کاربران</h3>
-              @foreach ($comments as $comment)
-              <div class="commentpart">
-                 <div class="col-md-10 col-xs-10">
-                     <div class="comment">
-                         <p class="commentstats">{{ Facades\Verta::instance($item->created_at)->format('Y/n/j')}}</p>
-                         <h3><b>{{$comment->name}}</b> گفت:</h3>
-                         <p>{{$comment->description}}</p>
-                     </div>
-                 </div>
-                 <div class="col-md-2 col-sm-2 col-xs-2">
-                     <div class="userimg"><img src="{{asset('images/Profile.png')}}" alt=""></div>
-                 </div>
-             </div>
-             @endforeach
-              <div class="addcomment">
-                  <form action="{{route('postcomment')}}" method="POST">
-                      @csrf 
-                      <input type="hidden" name="post_id" value ="{{$item->id}}" >
-                      @if(Auth::check())
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> 
-                      @endif
+<!-- start main -->
+<main class="main-screen-blog">
+  <div class="container">
+      <div class="main-style-container">
+          <div class="row">
+              <div class="custom-row-main">
+                  <div class="col-md-12 col-12">
                       <div class="row">
-                          <div class="col-md-6">
-                              <div class="namepl">
-                                  <label for="mail">ایمیل</label>
-                                  <input type="email" name="email" id="mail">
+                          <div class="row-navbar">
+                              <div class="col-md-2 col-12">
+
+                                  <div class="img-header-blog">
+                                      <img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt=" {{$item->title}}s"
+                                          width="279px" height="289px">
+                                  </div>
+
+                              </div>
+                              <div class="col-md-9 col-12">
+                                  <div class="row">
+                                      <div class="guide-blog">
+                                          <div class="col-md-12 col-12">
+                                              <div class="one-sub-guide">
+                                                  <div class="row">
+                                                      <div class="one-sub-guide-1">
+                                                          <div class="col-md-4 col-12">
+                                                              <div class="one-sub-guide-1-1">
+                                                                  <h3>{{$item->title}}</h3>
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-md-8 col-12">
+                                                              <div class="one-sub-guide-1-2">
+                                                                  <ul class="one-sub-guide-1-list">
+                                                                      <a href="">
+                                                                          <li class="blog-list-item"> صفحه اصلی<svg
+                                                                                  width="22" height="26"
+                                                                                  viewBox="0 0 34 30" fill="none"
+                                                                                  xmlns="http://www.w3.org/2000/svg">
+                                                                                  <path
+                                                                                      d="M20.909 7.5L12.5454 15L20.909 22.5"
+                                                                                      stroke="#C6C6C6"
+                                                                                      stroke-width="2" />
+                                                                              </svg>
+                                                                          </li>
+                                                                      </a>
+                                                                      <a href="{{route('blog')}}">
+                                                                          <li class="blog-list-item"> بلاگ 
+                                                                              <svg width="22" height="26"
+                                                                                  viewBox="0 0 34 30" fill="none"
+                                                                                  xmlns="http://www.w3.org/2000/svg">
+                                                                                  <path
+                                                                                      d="M20.909 7.5L12.5454 15L20.909 22.5"
+                                                                                      stroke="#C6C6C6"
+                                                                                      stroke-width="2" />
+                                                                              </svg> </li>
+                                                                      </a>
+                                                                      <a href="#">
+                                                                          <li class="blog-list-item">
+                                                                            {{$item->title}}
+                                                                          </li>
+                                                                      </a>
+                                                                  </ul>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12 col-12"> <!-- row tow header blog Summary -->
+                                              <div class="two-sub-guide">
+                                                {!!$item->explain!!}
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12 col-12"><!-- row three header blog Summary -->
+                                              <div class="three-sub-guide">
+                                                @foreach($tags as $tag)
+                                                  <form action="{{ route('posttags') }}" id="{{$tag->id}}" >
+                                                      <input type="hidden" name="q" value="{{$tag->name}}">
+                                                  </form>
+                                                  <div class="tagbar-navbar" onclick="document.getElementById('{{$tag->id}}').submit();">
+                                                    <span class="tag">{{$tag->name}}</span>
+                                                  </div>
+                                                @endforeach
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                          <div class="col-md-6">
-                              <div class="namepl">
-                                  <label for="firstname">نام و نام خانوادگی</label>
-                                  <input type="text" name="name" id="firstname" required>
+                      </div>
+                  </div>
+                  <div class="col-md-12 col-12">
+                      <div class="main-blog">
+                          <div class="row">
+                              <div class="main-blog-row">
+                                  <div class="col-md-10 col-12">
+                                      <div class="main-blog-Ma">
+                                          <div class="section-reading"><!-- section reading -->
+                                              <div class="one-sub-guide-1-100">
+                                                  <h4 style="color: #1B6676">
+                                                    {{$item->title}}
+                                                  </h4>
+                                              </div>
+                                              {!!$item->content!!}
+                                          </div>
+                                      </div>
+                                      <div class="one-sub-guide-1-10">
+                                          <span>
+                                              مطالب مشابه
+                                          </span>
+                                      </div>
+                                      <!-- Similar content -->
+                                      <div class="row-item-main-blog">
+                                        @foreach ($posts->take(16) as $item)
+                                          <div class="col-md-3">
+                                            <a href="{{route('post',['id'=>$item->id])}}">
+                                                <div class="item-main animation" >
+                                                    <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->title}}"></div>
+                                                    <div><h3>  
+                                                      {{$item->title}}    
+                                                    </h3></div>
+                                                    <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 325, ' ...') !!}</span></div>
+                                                </div>
+                                            </a>
+                                          </div>
+                                        @endforeach
+
+                                      </div>
+                                      
+                                      <!-- Similar content mobile -->
+                                      <div class="row-item-main-blog-mobile" data-flickity='{ "groupCells": 2, "prevNextButtons": false, "pageDots": false, "rightToLeft": true}'>
+                                        @foreach ($posts->take(3) as $item)    
+                                          <div class="carousel-cell carousels">
+                                            <div class="productdesc">
+                                              <a href="{{route('post',['id'=>$item->id])}}">
+                                                  <div class="item-main animation">
+                                                      <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}"
+                                                              alt="{{$item->title}}"></div>
+                                                      <div><span> 
+                                                        {{$item->title}}    
+                                                          </span></div>
+                                                      <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 325, ' ...') !!}</span></div>
+                                                  </div>
+                                              </a>
+                                            </div>
+                                          </div>
+                                        @endforeach
+                                      </div>
+                                      <!-- end Similar content mobile -->
+                                  </div>
+
+
+
+
+
+
+                                  <aside class="col-md-2 col-12">
+                                      <div class="aside-blog-item">
+                                        @foreach ($banners->where('place','blog') as $item)    
+                                          <a href="{{$item->url}}" class="aside-blog-img">
+                                              <img src="{{ asset('pics/'.$item['image'].'/'.$item['image'] ) }}" alt="{{$item->title}}">
+                                          </a>
+                                        @endforeach
+                                      </div>
+                                  </aside>
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-12">
-                          <div class="commentpl">
-                              <label for="yourcomment">دیدگاه شما</label><br>
-                              <textarea id="yourcomment" name="content" rows="4" required></textarea>
-                          </div>
-                      </div>
-                     <div class="g-recaptcha" data-sitekey="6LfOX1YhAAAAALbrLeOGqemecG9PE6pmrx_tAYXJ"></div>
-                      <div class="col-md-12">
-                          <input type="submit" value="فرستادن دیدگاه">
-                      </div>
-                  </form>
-              </div>
-            </div>            
-        </div>
-        <div class="col-md-3">
-          <!--
-            <div class="side-1">
-              <div class="sidehead">
-                <h4>جست و جو در مجله</h4>
-              </div>
-              <div class="sidebody">
-                <form action="{{route('search')}}">
-                    <input type="search" name="q" placeholder="جستجو...">
-                </form>
-              </div>
-            </div>
-            <div class="side-2">
-                <div class="sidehead">
-                  <h4>آخرین مطالب</h4>
-                </div>
-                <div class="sidebody">
-                  <ul>
-                    @foreach($posts as $writer)
-                      <li><a href="{{route('post',['id'=>$writer->id])}}">{{$writer->title}}</a></li>
-                    @endforeach
-                  </ul>
-                </div>
-              </div>
-               -->
-            <div class="side-3" style="margin-top: 70px;">
-                <div class="sidehead">
-                  <h4>محتوای مرتبط</h4>
-                </div>
-                <div class="sidebody">
-                  <ul>
-                    @foreach ($banners->where('place','blog') as $item)    
-                    <li><a href="{{$item->url}}"><img src="{{ asset('pics/'.$item['image'].'/'.$item['image'] ) }}" alt="{{$item->title}}" style="width:100%;"></a></li>  
-                    @endforeach
-                  </ul>
-                </div>
+                  </div>
               </div>
           </div>
-    </div>
-</div>
+      </div>
+  </div>
+</main>
 @endsection
