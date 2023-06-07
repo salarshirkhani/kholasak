@@ -101,7 +101,7 @@
                                       <img src="{{asset('img/Search_duotone_line (1).png')}}" alt="Search_duotone_line">
                                   </button>
                                   <div id="searchbox">
-                                      <form action="{{route('search')}}">">
+                                      <form action="{{route('search')}}">
                                           <input type="search" name="q"  class="show-search" placeholder="جستجو کنید...">
                                           <button type="submit"  class="showsearch"></button>
                                       </form>
