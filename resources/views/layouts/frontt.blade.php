@@ -201,7 +201,7 @@
                 <div class="ham"> 
                     <div class="col-md-2">
                         <div class="logo-footer">
-                            <a href=""><img src="img/photo_۲۰۲۳-۰۱-۰۵_۰۰-۰۵-۲۹-removebg-preview 3.png"
+                            <a href=""><img src="{{asset('img/photo_۲۰۲۳-۰۱-۰۵_۰۰-۰۵-۲۹-removebg-preview 3.png')}}"
                                     alt="Search_duotone_line"></a>
                         </div>
                     </div>
@@ -230,12 +230,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="img-footer-left">
-                                        <a href=""><img src="img/enamad 1 (1).png" alt=""></a>
+                                        <a href=""><img src="{{asset('img/enamad 1 (1).png')}}" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="img-footer-left img-footer-left-00">
-                                        <a href=""><img src="img/zarin 1 (1).png" alt=""></a>
+                                        <a href=""><img src="{{asset('img/zarin 1 (1).png')}}" alt=""></a>
                                     </div>
                                 </div>
                             </div>
