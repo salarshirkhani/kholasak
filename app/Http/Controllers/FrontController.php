@@ -158,6 +158,7 @@ class FrontController extends Controller
 
         return view('welcome',[
         'posts' => Post::orderBy('created_at', 'desc')->get(),
+        'products' => Product::where('lovely',NULL)->orderBy('created_at', 'desc')->paginate('16'),
         'categories' => Category::whereNull('parent_id')->with('allChildren')->where('show','1')->where('type','product')->orderBy('priority', 'desc')->get(),
         'brands' => brand::orderBy('created_at', 'desc')->get(),     
         'subscribe' =>  $subscribe, 
@@ -386,7 +387,7 @@ class FrontController extends Controller
         $item=Product::find($id);
         $related_products = Product::inRandomOrder()->where('category', $item->category)->limit(6)->get();
         $comments = comment::where('product_id',$id)->orderBy('created_at', 'desc')->get();
-        SEOTools::setTitle(' رواق -'.$item->name);
+        SEOTools::setTitle(' خلاصک -'.$item->name);
         SEOTools::setDescription($item->explain);
         SEOTools::opengraph()->setUrl('http://rravagh.com');
         SEOTools::setCanonical('http://rravagh.com');

@@ -89,7 +89,8 @@
                                           </div>
                                           <div class="col-md-12 col-12"> <!-- row tow header blog Summary -->
                                               <div class="two-sub-guide">
-                                                {!!$item->explain!!}
+                                                  <p>{!!$item->explain!!}</p>
+                                                
                                               </div>
                                           </div>
                                           <div class="col-md-12 col-12"><!-- row three header blog Summary -->
@@ -132,7 +133,7 @@
                                       </div>
                                       <!-- Similar content -->
                                       <div class="row-item-main-blog">
-                                        @foreach ($posts->take(16) as $item)
+                                        @foreach ($posts as $item)
                                           <div class="col-md-3">
                                             <a href="{{route('post',['id'=>$item->id])}}">
                                                 <div class="item-main animation" >
@@ -150,7 +151,7 @@
                                       
                                       <!-- Similar content mobile -->
                                       <div class="row-item-main-blog-mobile" data-flickity='{ "groupCells": 2, "prevNextButtons": false, "pageDots": false, "rightToLeft": true}'>
-                                        @foreach ($posts->take(3) as $item)    
+                                        @foreach ($posts as $item)    
                                           <div class="carousel-cell carousels">
                                             <div class="productdesc">
                                               <a href="{{route('post',['id'=>$item->id])}}">
