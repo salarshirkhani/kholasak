@@ -21,8 +21,8 @@
                                         <div class="col-md-2 col-12">
 
                                             <div class="img-header-blog">
-                                                <img src="img/nody-عکس-با-کیفیت-لوگوی-استقلال-1634813913 2.png" alt=""
-                                                    width="279px" height="289px">
+                                                <img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt=" {{$item->name}}"
+                                                width="279px" height="289px">
                                             </div>
 
                                         </div>
@@ -88,22 +88,14 @@
                                                     </div>
                                                     <div class="col-md-12 col-12"><!-- row three header blog Summary -->
                                                         <div class="three-sub-guide">
+                                                            @foreach($tags as $tag)
+                                                            <form action="{{ route('tags') }}" id="{{$tag->id}}" >
+                                                                <input type="hidden" name="q" value="{{$tag->name}}">
+                                                            </form>
                                                             <div class="tagbar-navbar">
-                                                                <p class="tag">محل تگ ویژمحل تگ ویژمحل تگ ویژمحل تگ
-                                                                    ویژمحل تگ ویژه</p>
+                                                                <p class="tag" onclick="document.getElementById('{{$tag->id}}').submit();">{{$tag->name}}</p>
                                                             </div>
-                                                            <div class="tagbar-navbar">
-                                                                <p class="tag">محل تگ ویژه</p>
-                                                            </div>
-                                                            <div class="tagbar-navbar">
-                                                                <p class="tag">محل تگ ویژه</p>
-                                                            </div>
-                                                            <div class="tagbar-navbar">
-                                                                <p class="tag">محل تگ ویژه</p>
-                                                            </div>
-                                                            <div class="tagbar-navbar">
-                                                                <p class="tag">محل تگ ویژه</p>
-                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
@@ -269,14 +261,24 @@
                                                         <p class="price"><del><?php echo number_format($item->price) ?> <span>تومان</span></del></p>
                                                         <p class="finprice"><?php echo number_format($item->discount) ?> <span>تومان</span></p>
                                                         <div class="stocks">
-                                                            <div class="counter">
-                                                                <span class="down" onclick="decreaseCount(event, this)">-</span>
-                                                                <input type="text" value="1">
-                                                                <span class="up" onclick="increaseCount(event, this)">+</span>
-                                                            </div>
+                                                            <form id="addcart{{$item->id}}" action="{{route('cart.store')}}" method="post" >
+                                                                <div class="counter">
+                                                                    <span class="down" onclick="decreaseCount(event, this)">-</span>
+                                                                    <input type="text" name="number" value="1">
+                                                                    <span class="up" onclick="increaseCount(event, this)">+</span>
+                                                                </div>
+                                                                @csrf 
+                                                                <input type="hidden" name="id" value="{{$item->id}}" > 
+                                                                <input type="hidden" name="name" value="{{$item->name}}" >
+                                                                @if ($item->discount != NULL)
+                                                                    <input type="hidden" name="price" value="{{$item->discount}}" > 
+                                                                @else
+                                                                    <input type="hidden" name="price" value="{{$item->price}}" > 
+                                                                @endif
+                                                            </form>
                                                             <p>موجودی: {{$item->inventory}}عدد</p>
-                                                        </div>
-                                                        <a href="#"  data-toggle="modal" data-target="#modal-success37" class="supportbtn">
+                                                        </div>                                                     
+                                                        <a href="#" onclick="document.getElementById('addcart{{$item->id}}').submit();" class="supportbtn">
                                                             <svg width="42" height="38" viewBox="0 0 42 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                               <path d="M5.25 13.5C5.25 11.6144 5.25 10.6716 5.83579 10.0858C6.42157 9.5 7.36438 9.5 9.25 9.5H32.75C34.6356 9.5 35.5784 9.5 36.1642 10.0858C36.75 10.6716 36.75 11.6144 36.75 13.5V24.5C36.75 26.3856 36.75 27.3284 36.1642 27.9142C35.5784 28.5 34.6356 28.5 32.75 28.5H9.25C7.36438 28.5 6.42157 28.5 5.83579 27.9142C5.25 27.3284 5.25 26.3856 5.25 24.5V13.5Z" fill="#222852" fill-opacity="0.25"></path>
                                                               <ellipse cx="10.5" cy="23.75" rx="1.75" ry="1.58333" fill="white"></ellipse>

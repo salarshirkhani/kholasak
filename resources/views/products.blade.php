@@ -1,84 +1,89 @@
 @extends('layouts.frontt')
 @section('content')
-<section class="content">
-    <div class="container">
-      <div class="main-carousel" data-flickity='{ "wrapAround": false, "freScroll":true, "autoPlay": 3000, "pauseAutoPlayOnHover": true  }'>
-        @foreach ($banners->where('place','slider') as $item)
-        <div class="carousel-cell">
-          <a href="{{$item->url}}"><img src="{{ asset('pics/'.$item['image'].'/'.$item['image'] ) }}" style="width:100%;" alt="{{$item->title}}"></a>
-        </div>
-        @endforeach
-      </div>
-      <div class="phoneset">
-        <div class="carouseltitle">
-          <h2>آخرین محصولات</h2>
-          <p>آخرین محصولات رواق را در اینجا مشاهده کنید.</p>
-        </div>
-        <div class="row">
-            @foreach ($products as $item)
-            <div class="col-md-3 col-6">
-                <div class="carousel-cell carousels" style="width:fit-content !important;">
-                    <div class="carouseldn">
-                        <a href="{{route('product',['id'=>$item->id])}}">
-                            <img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->name}}">
-                        </a>
-                      <div class="productdesc">
-                        <a href="{{route('product',['id'=>$item->id])}}">{{$item->name}}</a>
-                        <p>{!! \Illuminate\Support\Str::limit($item->explain, 55, ' ...') !!}</p>
-                        <div class="pricepl">
-                          @if ($item->discount != NULL)
-                            <p class="finalprice"><?php echo number_format($item->price) ?> تومان</p>
-                            <p class="originalprice"><?php echo number_format($item->discount) ?> تومان</p>
-                          @else
-                            <p class="finalprice"><?php echo number_format($item->price) ?> <span>تومان</span></p>
-                          @endif
-                        </div>
-                        <a href="{{route('product',['id'=>$item->id])}}" class="viewprd">مشاهده محصول</a>
+    <!-- start main -->
+    <main class="main-screen">
+      <div class="container">
+          <div class="main-style-container">
+              <div class="row">
+                  <div class="custom-row-main">
+                      <div class="col-md-12">
+                          <div class="row-item-main">
+                            @foreach ($products->slice(0,12) as $item)   
+                              <div class="col-md-3">
+                                  <a href="{{route('product',['id'=>$item->id])}}">
+                                      <div class="item-main animation" >
+                                          <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->name}}"></div>
+                                          <div><h3>  
+                                            {!! \Illuminate\Support\Str::limit($item->name, 15, ' ...') !!}   
+  
+                                          </h3></div>
+                                          <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 85, ' ...') !!}</span></div>
+                                      </div>
+                                  </a>
+                              </div>
+                            @endforeach
+
+
+                        <div id="dots"></div>
+                          <span id="more">
+                            @foreach ($products->slice(12,16) as $item)   
+                            <div class="col-md-3">
+                                <a href="{{route('product',['id'=>$item->id])}}">
+                                    <div class="item-main animation" >
+                                        <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->name}}"></div>
+                                        <div><h3>  
+                                            {!! \Illuminate\Support\Str::limit($item->name, 15, ' ...') !!}   
+
+                                        </h3></div>
+                                        <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 85, ' ...') !!}</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                          @endforeach
+
+                           </span>
+                          </div>
+                          <div class="myB"></div>
+                              <button onclick="myFunction()" id="myBtn"> مشاهده بیشتر  &#8681</button> 
+                             
                       </div>
-                    </div>
                   </div>
-            </div>
-            @endforeach
-            <ul class="pagination" style="margin-top: 40px;">
-                {{$products->links()}}
-             </ul>
-        </div>
+              </div>
+          </div>
       </div>
-    <div class="firstset">
-        <div class="carouseltitle">
-          <h2>آخرین محصولات</h2>
-          <p>آخرین محصولات رواق را در اینجا مشاهده کنید.</p>
-        </div>
-        <div class="row">
-            @foreach ($products as $item)
-            <div class="col-md-3">
+  </main>
+  <!-- 
+      new main for mobile
+   -->
+
+
+
+
+    <!-- start main mobile -->
+  <main class="main-mobile">
+      <div class="container">
+         <div class="main-style-container" style="margin-top:0px">
+              <div data-flickity='{ "groupCells": 2, "prevNextButtons": false, "pageDots": false, "rightToLeft": true}'>
+              @foreach ($products->take(16) as $item)   
                 <div class="carousel-cell carousels">
-                    <div class="carouseldn">
-                        <a href="{{route('product',['id'=>$item->id])}}">
-                            <img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}" alt="{{$item->name}}">
-                        </a>
                       <div class="productdesc">
-                        <a href="{{route('product',['id'=>$item->id])}}">{{$item->name}}</a>
-                        <p>{!! \Illuminate\Support\Str::limit($item->explain, 55, ' ...') !!}</p>
-                        <div class="pricepl">
-                          @if ($item->discount != NULL)
-                            <p class="finalprice"><?php echo number_format($item->price) ?> تومان</p>
-                            <p class="originalprice"><?php echo number_format($item->discount) ?> تومان</p>
-                          @else
-                            <p class="finalprice"><?php echo number_format($item->price) ?> <span>تومان</span></p>
-                          @endif
-                        </div>
-                        <a href="{{route('product',['id'=>$item->id])}}" class="viewprd">مشاهده محصول</a>
+                          <a href="{{route('product',['id'=>$item->id])}}">
+                              <div class="item-main animation">
+                                  <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}"
+                                          alt="{{$item->title}}"></div>
+                                  <div><span> 
+                                    {!! \Illuminate\Support\Str::limit($item->name, 15, ' ...') !!}   
+                                      </span></div>
+                                  <div><span>{!! \Illuminate\Support\Str::limit($item->explain, 85, ' ...') !!}</span></div>
+                              </div>
+                          </a>
                       </div>
-                    </div>
                   </div>
-            </div>
-            @endforeach
-            <ul class="pagination" style="margin-top: 40px;">
-                {{$products->links()}}
-             </ul>
-        </div>
+              @endforeach
+              </div>
+          </div>
       </div>
-    </div>
-  </section>
+  </main>
+
+
 @endsection

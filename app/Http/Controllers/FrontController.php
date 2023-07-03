@@ -289,27 +289,6 @@ class FrontController extends Controller
 
     }
 
-    public function discountable(Request $request) {
-        $sort = $request->get('sort'); 
-        if(!isset($sort)){
-            $sort='DESC';
-        }
-        if(Auth::check())
-           $subscribe= subscribe::where('status' , 'new')->where('user_id' , Auth::user()->id)->where('finish_date' , '!=' , NULL)->where('finish_date','>',carbon::now())->orderBy('created_at', 'desc')->FIRST();
-        else
-          $subscribe =NULL ;
-        return view('discountable',[
-            'categories' => Category::whereNull('parent_id')->with('allChildren')->where('show','1')->where('type','product')->orderBy('priority', 'desc')->get(),
-            'products' => Product::where('discountable','1')->orderBy('created_at', 'desc')->paginate('16'),
-            'brands' => brand::orderBy('created_at', 'desc')->get(),
-            'writers' => color::orderBy('created_at', 'desc')->get(),
-            'sort' =>$sort,
-            'subscribe' =>  $subscribe,
-            'banners' => SliderItem::orderBy('created_at', 'desc')->get(), 
-        ]);
-
-    }
-
     public function category($slug,Request $request) {
         $sort = $request->get('sort'); 
         if(!isset($sort)){

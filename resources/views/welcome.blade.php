@@ -87,7 +87,7 @@
               @foreach ($products->take(16) as $item)   
                 <div class="carousel-cell carousels">
                       <div class="productdesc">
-                          <a href="{{route('post',['id'=>$item->id])}}">
+                          <a href="{{route('product',['id'=>$item->id])}}">
                               <div class="item-main animation">
                                   <div><img src="{{ asset('pics/'.$item['pic'].'/'.$item['pic'] ) }}"
                                           alt="{{$item->title}}"></div>

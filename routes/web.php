@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontController@index')->name('/');
 Route::get('products', 'FrontController@products')->name('products');
-Route::get('discountable', 'FrontController@discountable')->name('discountable');
 Route::get('contact', 'FrontController@contact')->name('contact');
 Route::post('message', 'FrontController@Message')->name('message');
 Route::get('about', 'FrontController@about')->name('about');
