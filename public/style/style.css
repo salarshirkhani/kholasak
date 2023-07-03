@@ -29,6 +29,9 @@
 a{
     text-decoration: none; 
 }
+h3 {
+    font-size: 20px;
+}
 
 /* start hrader */
 .header-site {
@@ -102,12 +105,23 @@ a{
     width: 70px;
     height: 40px;
     color:#FFFFFF;
+    transition: 500ms;
+}
+.sin:hover {
+    color:#0E8984;
+    background: linear-gradient(220deg, rgba(58, 176, 70, 0.28) 0%, rgba(159, 217, 165, 0.510417) 0.01%, rgba(255, 255, 255, 0.410417) 50.77%, #FFFFFF 100%);
+    transition: 500ms;
 }
 .login {
     border-radius: 10px 0px 0px 10px !important; 
     padding-right: 7px;
     padding-top: 5px;
     background: #71C1B8;
+}
+.login:hover {
+    background: linear-gradient(21deg, rgba(58, 176, 70, 0.28) 0%, rgba(159, 217, 165, 0.510417) 0.01%, rgba(255, 255, 255, 0.410417) 50.77%, #FFFFFF 100%);
+    transition: 500ms;
+    color:#71C1B8;
 }
 .search-box {
     padding-right: 45%;
@@ -276,16 +290,17 @@ a{
 }
 .item-main {
 
-    height: auto;
+    height: 301px;
     width: 16vw;
     background: #F4F4F4;
-    border-radius: 10px;
+    border-radius: 12px;
     padding-top: 12px;
     transition: 150ms;
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 5px;
+    overflow: hidden;
 
 }
 .item-main:hover {
@@ -296,22 +311,28 @@ a{
     width: 150px;
     margin-left: 18px;
 }
+.item-main>div:nth-child(1)>img {
+    width: 165px;
+    height: 165px;
+    border-radius: 8px;
+}
 .item-main>div:nth-child(2) {
     font-family: 'KalamehWeb';
-    font-size: 20px; 
+    font-size: 20px !important;
     color: #178A8D;
-    margin-right: -15px;
-    padding: 0px 70px 0px 60px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0px 5px 0px 7px;
     text-align: center;
     line-height: 29px;
 }
 .item-main>div:nth-child(3) {
     font-family: 'iranyekan';
-    font-size: 9.8px;
+    font-size: 11px;
     color: #5C5C5C;
     margin-right: 10px;
     margin-right: -15px;
-    padding: 0px 12px 22px 0px;
+    padding: 0px 44px 18px 30px;
     text-align: center;
 }
 @media (min-width: 1700px)
@@ -368,8 +389,9 @@ a{
     width: 85%;
     background: linear-gradient(180deg, rgba(250, 250, 250, 0.13) 0%, #FFFFFF 61.98%);
     margin-top: -183px;
-    padding-top: 139px;
+    padding-top: 172px;
     position: absolute;
+    left: 108px
 }
 .animation {
     opacity: 0;

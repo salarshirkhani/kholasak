@@ -17,12 +17,13 @@
 }
 .img-header-blog {
     padding-top: 20px;
-    padding-right: 58px;
+    padding-right: 0px;
 }
 
 .img-header-blog>img {
     width: 210px;
-    height: auto;
+    height: 250px;
+    border-radius: 8px;
 }
 .main-blog {
     height: auto;
@@ -35,14 +36,13 @@
     padding-right: 0px;
     flex-direction: column;
 }
-.one-sub-guide-1-1>span {
+h3 {
     font-family: 'KalamehWeb';
     font-size: 28px;
     line-height: 39px;
     text-align: justify;
     color: #1F8996;
 }
-
 .one-sub-guide-1-list {
     padding-top: 25px;
     list-style: none;
@@ -53,7 +53,7 @@
     font-family: 'iranyekan';
     font-style: normal;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 11px;
     line-height: 36px;
     color: #BFBFBF;;
     
@@ -73,25 +73,26 @@
     grid-gap: 10px;
     box-sizing: border-box;
     padding-top: 19px;
+    overflow-x: scroll;
 }
 .tagbar-navbar {
-    width: 78px;
-    height: 34px;
     background: #1B6676;
+    margin: 12px 1px 12px 1px;
     border-radius: 15px;
-    text-align: center;
-    padding-top: 2px;
-    transition: 400ms;
+    transition: 400ms;;
+    padding: 3px 23px 6px 23px;
 }
 .tagbar-navbar:hover {
     background: #71c1b8;
     transition: 400ms;
 }
 .tag {
-    font-family: 'Iranyekanextrabold';
-    font-size: 12px;
-    color: #FFFFFF;
-    word-spacing: -1px;
+    width: max-content;
+    color: white;
+    font-family: 'iranyekanvbold';
+    font-size: 14px;
+    margin: 0 10px;
+    margin-top: 24px;
 }
 /* end navbar blog */
 
@@ -107,6 +108,9 @@
     color: #5C5C5C;
     line-height: 31px;
 }
+.section-reading>ul {
+    display:block;
+}
 .one-sub-guide-1-1 {
     margin-bottom: -20px;
     padding-right: 18px;
@@ -117,7 +121,7 @@
     padding-right: 0px;
     padding-top: 0px;
 }
-.one-sub-guide-1-100>span {
+.one-sub-guide-1-100>h4 {
     font-family: 'KalamehWeb';
     font-size: 28px;
     line-height: 39px;
@@ -150,6 +154,7 @@
 }
 .aside-blog-item {
     margin-top: -35px;
+    margin-right: -14px;
 }
 .aside-blog-img {
     margin-top: 26px;
@@ -157,8 +162,14 @@
     margin-right: 73px;
 }
 .aside-blog-img>img {
-    width: 240px;
+    width: 240px !important;
+    height: 200px;
+    margin-bottom: 26px;
+    border-radius:8px;
 }
 .section-reading-img {
     padding-right: 10px;
+}
+p>img {
+    height: 292px !important;
 }

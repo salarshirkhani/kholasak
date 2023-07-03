@@ -179,28 +179,30 @@ ul {
     transition: 150ms;
 }
 .item-main>div:nth-child(1) {
-    width: 78px;
-    margin-left: 18px;
+    
+    margin-left: 2px;
 }
 .item-main>div>img {
-    width: 93px;
+    width: 152px;
+    height: 82px;
+    border-radius: 8px;
 }
 .item-main>div:nth-child(2) {
     font-family: 'KalamehWeb';
-    font-size: 16px;
+    font-size: 19px;
     color: #178A8D;
     margin-right: -5px;
-    padding: 0px 19px 0px 19px;
+    padding: 3px 19px 2px 19px;
     text-align: center;
     line-height: 20px;
 }
 .item-main>div:nth-child(3) {
     font-family: 'iranyekan';
-    font-size: 9.3px;
+    font-size: 11px;
     color: #5C5C5C;
     margin-right: 10px;
-    margin-right: -15px;
-    padding: 0px 12px 5px 0px;
+    margin-right: -21px;
+    padding: 0px 35px 0px 17px;
     text-align: center;
 }
 
@@ -213,19 +215,20 @@ ul {
     grid-template-columns: auto auto;
 }
 .item-main {
-    height: auto;
-    width: 150px;
+    height: 173px;
+    width: 173px;
     background: #F4F4F4;
-    border-radius: 10px;
+    border-radius: 12px;
     padding-top: 12px;
     transition: 150ms;
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 5px;
+    overflow: hidden;
 }
 .carousel-cell {
-    width: 165px !important;
+    width: 190px !important;
     display: grid;
     grid-template-columns: auto;
     grid-gap: 10px;
@@ -241,6 +244,13 @@ ul {
         margin-top: 99px;
     }
 }
+
+.flickity-enabled.is-draggable .flickity-viewport {
+        height: 350.95000000000005px !important;
+}
+
+
+
 
 
 
